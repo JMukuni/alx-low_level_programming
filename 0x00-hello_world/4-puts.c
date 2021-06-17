@@ -4,9 +4,9 @@
  * Description: Prints "\"Programming is like building a multilingual puzzle"
  * Return: 0
  */
-int main()
+int main(main)
 {
-  puts("\"Programming is like building a multilingual puzzle\n");
-  getchar();
-  return (0);
+puts("\"Programming is like building a multilingual puzzle\n");
+getchar();
+return (0);
 }
