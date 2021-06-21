@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-/*
- *main -  writing control statements
- *return 0
-*/
+/**
+ *main-  generates random number and displays wether
+ *number is positive, zero or negative
+ *Return: 0
+ */
 int main(void)
 {
 int n;
