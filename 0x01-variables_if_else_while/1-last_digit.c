@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
-/**                                                                       *main description:last digit greater than 6, 0 or less than 6 but not 0.
- *Description: print last digit of a variable
- *return 0
-*/
+/**
+ *main- last digit greater than 6, 0 or less than 6 but not 0.
+ *Return: 0
+ */
 int main(void)
 {
 int n;
