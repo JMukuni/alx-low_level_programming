@@ -1,5 +1,4 @@
 #include "holberton.h"
-
 /**
  *powB - raises the number base to power power
  *@base : the base
@@ -85,4 +84,15 @@ void printnchar(int n)
 	    }
 	}
     }
+}
+
+/**
+ * print_number - prints out any integer with only _putchar
+ * @n: integer to be printed
+ * Return: 0
+ */
+void print_number(int n)
+{
+
+  printnchar(n);
 }
