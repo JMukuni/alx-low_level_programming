@@ -15,7 +15,7 @@ continue;
 }
 prod = i * j;
 _putchar(',');
-_putchar(' '); 
+_putchar(' ');
 if (prod >= 10)
 {
 _putchar(prod / 10 + 48);
@@ -26,8 +26,6 @@ else
 _putchar(' ');
 _putchar(prod + 48);
 }
-_putchar('\n');
 }
 _putchar('\n');
 }
-
