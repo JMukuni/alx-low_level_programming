@@ -29,7 +29,7 @@ return (1);
 while (num)
 {
 num = num / 10;
-ength += 1;
+length += 1;
 }
 return (length);
 }
