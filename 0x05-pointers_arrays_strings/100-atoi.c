@@ -7,20 +7,6 @@
  */
 int mapint(char a)
 {
-  /*
-    int i = 0;
-    char ic;
-    if (a >= '0' && a <= '9')
-    {
-    for (ic = '0'; ic <= '9'; ic++, i++)
-    {
-    if (a == ic)
-    {
-    return (i);
-    }
-    }
-    }
-  */
 return ((int)a - 48);
 }
 /**
@@ -39,10 +25,9 @@ return (i >= '0' && i <= '9');
  */
 int _atoi(char *s)
 {
-int num = 0, sign = 1, started = 0;/*1 for true and 0 for false*/
+int num = 0, sign = 1, started = 0;
 while (*s)
 {
-/*if a number is already countign and a non number is found break*/
 if (started && !isDigit(*s))
 break;
 if (*s == '-')
@@ -54,5 +39,5 @@ num =  num * 10 + mapint(*s);
 }
 s++;
 }
-return (sign * num);
+return (sign *num);
 }
