@@ -1,93 +1,71 @@
 #include "holberton.h"
 #include <stdio.h>
-#include <stdlib.h>
 /**
- *
- *
- *
+ * isPrintableASCII - determines if n is a printable ASCII char
+ * @n: integer
+ * Return: 1 if true, 0 if false
  */
-int _intlen(unsigned long int num)
+int isPrintableASCII(int n)
 {
-  int length = 0;
-
-  while (num)
-    {
-      length++;
-      num /= 10;
-    }
-  return (length);
+return (n >= 32 && n <= 126);
 }
 /**
- *
- *
- *
+ * printHexes - print hex values for string b in formatted form
+ * @b: string to print
+ * @start: starting position
+ * @end: ending position
  */
-int _strlen(char *string)
+void printHexes(char *b, int start, int end)
 {
-  int length = 0;
-
-  while (*string)
-    {
-      length++;
-      string++;
-    }
-  return (length);
+int i = 0;
+while (i < 10)
+{
+if (i < end)
+printf("%02x", *(b + start + i));
+else
+printf("  ");
+if (i % 2)
+printf(" ");
+i++;
+}
 }
 /**
- *
- *
- *
- *
+ * printASCII - print ascii values for string b,
+ * formatted to replace nonprintable chars with '.'
+ * @b: string to print
+ * @start: starting position
+ * @end: ending position
  */
-unsigned long int map2int(char *n)
+void printASCII(char *b, int start, int end)
 {
-  unsigned long int num = 0;
-
-  while (*n)
-    {
-      num = num * 10 + (*n - 48);
-      n++;
-    }
-  return (num);
+int ch, i = 0;
+while (i < end)
+{
+ch = *(b + i + start);
+if (!isPrintableASCII(ch))
+ch = 46;
+printf("%c", ch);
+i++;
+}
 }
 /**
- *
- *
- *
+ * print_buffer - prints a buffer
+ * @b: string
+ * @size: size of buffer
  */
-
-char *map2char(unsigned long int num)
+void print_buffer(char *b, int size)
 {
-
-  char *a = malloc(_intlen(num) * sizeof(char));
-  char *b = a;
-
-  while (num)
-    {
-      *a = num % 10;
-      num /= 10;
-      a++;
-    }
-  *a = '\0';
-  return (b);
+int start, end;
+if (size > 0)
+{
+for (start = 0; start < size; start += 10)
+{
+end = (size - start < 10) ? size - start : 10;
+printf("%08x: ", start);
+printHexes(b, start, end);
+printASCII(b, start, end);
+printf("\n");
 }
-
-/**
- *
- *
- *
- */
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
-{
-  unsigned long int sum = map2int(n1) + map2int(n2);
-
-  if (_intlen(sum) <= size_r)
-    {
-      *r = sum;
-      return (map2char(sum));
-    }
-  else
-    {
-      return (0);
-    }
+} else
+printf("\n");
 }
