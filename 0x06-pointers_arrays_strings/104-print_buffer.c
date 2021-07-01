@@ -1,7 +1,7 @@
 #include "holberton.h"
 #include <stdio.h>
 /**
- * isPrintableASCII - determines if a character is printable as ASCII
+ * isPrintableASCII - determines if n is a printable ASCII char
  * @n: integer
  * Return: 1 if true, 0 if false
  */
@@ -51,8 +51,6 @@ i++;
  * print_buffer - prints a buffer
  * @b: string
  * @size: size of buffer
- * @start: integer
- * @end: another integer
  */
 void print_buffer(char *b, int size)
 {
