@@ -82,5 +82,5 @@ j--;
  */
 void print_number(int n)
 {
-_putchar(n);
+printnchar(n);
 }
