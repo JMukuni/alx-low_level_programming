@@ -1,104 +1,85 @@
 #include "holberton.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 /**
- * _strlen - returns the length of a string
- * @s: string s
- * Return: length of string
+ *_intlen - determines length of integers
+ *@num: integer
+ *@length: integer length
  */
-int _strlen(char *s)
+int _intlen(unsigned long int num)
 {
-  char *p = s;
-
-  while (*s)
-    s++;
-  return (s - p);
+int length = 0;
+while (num)
+{
+length++;
+num /= 10;
 }
-
+return (length);
+}
 /**
- * rev_string - reverses a string
- * @s: string s
+ *_strlen - determine string length
+ *@string: string of characters
+ *@length: length of string
  */
-void rev_string(char *s)
+int _strlen(char *string)
 {
-  int i = 0;
-  int size = _strlen(s);
-  char temp;
-
-  while (i < size)
-    {
-      temp = *(s + i);
-      *(s + i) = *(s + size - 1);
-      *(s + size - 1) = temp;
-      i++;
-      size--;
-    }
+int length = 0;
+while (*string)
+{
+length++;
+string++;
 }
-
+return (length);
+}
 /**
- * returnRes - changes pretotal to digit to be added
- * @sum: pre-total
- * @plusOne: flag to add one to res
- * Return: returns digit to be placed into array
+ *map2int - map to integer
+ *@num: integer
+ *@n: character variable
  */
-int returnRes(int sum, int plusOne)
+unsigned long int map2int(char *n)
 {
-  int res;
-
-  if (sum == 9 && plusOne)
-    res = 0;
-  else if ((sum >= 10 && plusOne) || (sum < 9 && plusOne))
-    res = (sum % 10) + 1;
-  else
-    res = sum % 10;
-  return (res);
+unsigned long int num = 0;
+while (*n)
+{
+num = num * 10 + (*n - 48);
+n++;
 }
-
+return (num);
+}
 /**
- * returnPlusOne - determines bool of plusOne
- * @sum: pre-total
- * @plusOne: flag to add one to res
- * Return: 1 if true, 0 if false
+ *map2char - map to character
+ *@num: integer
+ *@a: character
+ *@b: second character
  */
-int returnPlusOne(int sum, int plusOne)
+char *map2char(unsigned long int num)
 {
-  if (sum > 9)
-    plusOne = 1;
-  else if (sum == 9 && plusOne)
-    plusOne = 1;
-  else
-    plusOne = 0;
-  return (plusOne);
+char *a = malloc(_intlen(num) * sizeof(char));
+char *b = a;
+while (num)
+{
+*a = num % 10;
+num /= 10;
+a++;
 }
-
+*a = '\0';
+return (b);
+}
 /**
- * infinite_add - function that adds two numbers
- * @n1: first number
- * @n2: second number
- * @r: buffer that the function will use to store the result
- * @size_r: size of buffer
- * Return: pointer to result
+ *_add - add two numbers
+ *@n1: first number
+ *@n2: second number
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
-  int sum, res, first, second, i = 0, plusOne = 0;
-  int len1 = _strlen(n1), len2 = _strlen(n2);
-  char *ptr = r;
-
-  while (len1 > 0 || len2 > 0)
-    {
-      first = len1 > 0 ? (*(n1 + len1 - 1) - '0') : 0;
-      second = len2 > 0 ? (*(n2 + len2 - 1) - '0') : 0;
-      sum = first + second;
-      res = returnRes(sum, plusOne);
-      plusOne = returnPlusOne(sum, plusOne);
-      *(ptr + i) = res + '0';
-      len1--;
-      len2--;
-      i++;
-    }
-  if (plusOne)
-    *(ptr + i) = 1 + '0';
-  ptr[++i] = '\0';
-  rev_string(ptr);
-  return ((size_r > _strlen(ptr)) ? ptr : 0);
+unsigned long int sum = map2int(n1) + map2int(n2);
+if (_intlen(sum) <= size_r)
+{
+*r = sum;
+return (map2char(sum));
+}
+else
+{
+return (0);
+}
 }
