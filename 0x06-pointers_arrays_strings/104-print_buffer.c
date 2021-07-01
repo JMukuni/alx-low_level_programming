@@ -1,19 +1,20 @@
 #include "holberton.h"
 #include <stdio.h>
 /**
- * isPrintableASCII - determines if n is a printable ASCII char
- * @n: integer
- * Return: 1 if true, 0 if false
+ *isPrintableASCII - determines if a character is printable as ASCII
+ *@n: integer
+ *Return: 1 if true, 0 if false
  */
 int isPrintableASCII(int n)
 {
 return (n >= 32 && n <= 126);
 }
 /**
- * printHexes - print hex values for string b in formatted form
- * @b: string to print
- * @start: starting position
- * @end: ending position
+ *printHexes - print hex values for string b in formatted form
+ *@b: string to print
+ *@start: starting position
+ *@end: ending position
+ *@i: integer
  */
 void printHexes(char *b, int start, int end)
 {
@@ -30,11 +31,12 @@ i++;
 }
 }
 /**
- * printASCII - print ascii values for string b,
- * formatted to replace nonprintable chars with '.'
- * @b: string to print
- * @start: starting position
- * @end: ending position
+ *printASCII - print ascii values for string b
+ *@b: string to print
+ *@start: starting position
+ *@end: ending position
+ *@ch: first integer
+ *@i: second integer
  */
 void printASCII(char *b, int start, int end)
 {
@@ -49,9 +51,11 @@ i++;
 }
 }
 /**
- * print_buffer - prints a buffer
- * @b: string
- * @size: size of buffer
+ *print_buffer - prints a buffer
+ *@b: string
+ *@size: size of buffer
+ *@start: integer
+ *@end: another integer
  */
 void print_buffer(char *b, int size)
 {
