@@ -1,0 +1,1 @@
+Learnirng static libraries, how to create and use them.
