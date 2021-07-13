@@ -1,53 +1,104 @@
-#include <stdio.h>
 #include "holberton.h"
 
 /**
- * _strlen - returns the length of a string
- * @s: string s
- * Return: length of string
+ * strtow - splits a string into words
+ * @str: string of words to be split
+ * Return: double pointer to strings
  */
-int _strlen(char *s)
+char **strtow(char *str)
 {
-  int len = 0;
+  char **ptr;
+  int i, k, len, start, end, j = 0;
+  int words =  countWords(str);
 
-  while (*s++)
-    len++;
-
-  return (len);
+  if (!str || !countWords(str))
+    return (NULL);
+  ptr = malloc(sizeof(char *) * (words + 1));
+  if (!ptr)
+    return (NULL);
+  for (i = 0; i < words; i++)
+    {
+      start = startIndex(str, j);
+      end = endIndex(str, start);
+      len = end - start;
+      ptr[i] = malloc(sizeof(char) * (len + 1));
+      if (!ptr[i])
+	{
+	  i -= 1;
+	  while (i >= 0)
+	    {
+	      free(ptr[i]);
+	      i--;
+	    }
+	  free(ptr);
+	  return (NULL);
+	}
+      for (k = 0; k < len; k++)
+	ptr[i][k] = str[start++];
+      ptr[i][k++] = '\0';
+      j = end + 1;
+    }
+  ptr[i] = NULL;
+  return (ptr);
 }
 
 /**
- * argstostr - concatenates all the arguments of your program
- * @ac: argument count
- * @av: argument vector
- * Return: concatenated string
+ * isSpace - determines if character is a space or not
+ * @c: input char
+ * Return: 1 if true or 0 or not
  */
-char *argstostr(int ac, char **av)
+int isSpace(char c)
 {
-  int i, j, len, total;
-  int m = 0;
-  char *ptr;
+  return (c == ' ');
+}
 
-  if (!ac || !av)
-    return (NULL);
-  total = 0;
-  for (i = 0; i < ac; i++)
+/**
+ * startindex - returns first index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of first non-space char
+ */
+int startIndex(char *s, int index)
+{
+
+  while (isSpace(*(s + index)))
+    index++;
+  return (index);
+}
+
+/**
+ * endIndex - returns last index of non-space char
+ * @s: input string
+ * @index: starting index
+ * Return: index of last index of non-space char
+ */
+int endIndex(char *s, int index)
+{
+  while (!isSpace(*(s + index)))
+    index++;
+  return (index);
+}
+
+/**
+ * countWords - counts numbers of words in string
+ * @s: input string
+ * Return: number of words
+ */
+int countWords(char *s)
+{
+  int wordOn = 0;
+  int words = 0;
+
+  while (*s)
     {
-      len = _strlen(av[i]) + 1;
-      total += len;
-    }
-  ptr = malloc(sizeof(char) * total + 1);
-  if (!ptr)
-    return (NULL);
-  for (i = 0; i < ac; i++)
-    {
-      len = _strlen(av[i]);
-      for (j = 0; j < len; j++, m++)
+      if (isSpace(*s) && wordOn)
+	wordOn = 0;
+      else if (!isSpace(*s) && !wordOn)
 	{
-	  ptr[m] = av[i][j];
+	  wordOn = 1;
+	  words++;
 	}
-      ptr[m++] = '\n';
+      s++;
     }
-  ptr[m] = '\0';
-  return (ptr);
+  return (words);
 }
