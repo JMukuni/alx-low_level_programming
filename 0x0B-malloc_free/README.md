@@ -1,0 +1,1 @@
+Learning malloc and free. A very good way to dynamically allocate and deallocate memory and allowing smooth and effiecient running programs.
