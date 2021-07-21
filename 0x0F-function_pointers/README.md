@@ -1,0 +1,1 @@
+Leaening about function pointers, their importance and advantages.
