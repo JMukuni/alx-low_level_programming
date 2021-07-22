@@ -1,14 +1,14 @@
-include "variadic_functions.h"
+#include "variadic_functions.h"
 /**
  * print_all - print anything
- * @format: list of types of arguments passed to the function
+ * @format: format of data type to be printed
  */
 void print_all(const char * const format, ...)
 {
-int i = 0;
+unsigned int i = 0;
 char *str, *sep = "";
-va_list list;
-va_start(list, format);
+va_list arguments;
+va_start(arguments, format);
 if (format)
 {
 while (format[i])
@@ -16,16 +16,16 @@ while (format[i])
 switch (format[i])
 {
 case 'c':
-printf("%s%c", sep, va_arg(list, int));
+printf("%s%c", sep, va_arg(arguments, int));
 break;
 case 'i':
-printf("%s%d", sep, va_arg(list, int));
+printf("%s%i", sep, va_arg(arguments, int));
 break;
 case 'f':
-printf("%s%f", sep, va_arg(list, double));
+printf("%s%f", sep, va_arg(arguments, double));
 break;
 case 's':
-str = va_arg(list, char *);
+str = va_arg(arguments, char *);
 if (!str)
 str = "(nil)";
 printf("%s%s", sep, str);
@@ -39,5 +39,5 @@ i++;
 }
 }
 printf("\n");
-va_end(list);
+va_end(arguments);
 }
