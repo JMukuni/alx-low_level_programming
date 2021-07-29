@@ -1,9 +1,33 @@
-global    main
-extern    printf
+	global  main
+	extern  printf
+
+	section .text
 main:
-mov   edi, format
-xor   eax, eax
-call  printf
-mov 	eax,
-ret
-format:	 db `Hello, Holberton\n`,0
+	push    rbx
+
+	mov     ecx, 90	
+	xor     rax, rax
+	xor     rbx, rbx
+	inc     rbx	
+print:
+
+	push    rax
+
+	mov     rdi, format 
+	mov     rsi, rax 
+	xor     rax, rax 
+	call    printf	
+
+	pop     rcx
+	pop     rax
+
+	mov     rdx, rax 
+	mov     rax, rbx 
+	add     rbx, rdx
+	dec     ecx
+	jnz     print
+
+	pop     rbx
+	ret
+format:
+	        db  "Hello, Holberton", 10, 0
