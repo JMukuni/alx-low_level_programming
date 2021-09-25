@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "mainn.h"
+#include "main.h"
 /**
  *_strlen - return length of string
  *@str:a string of length to be returned
