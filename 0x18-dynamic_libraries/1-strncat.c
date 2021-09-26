@@ -1,45 +1,27 @@
-#include <stdio.h>
 #include "main.h"
 /**
- *_strlen - return length of string
- *@str:a string of length to be returned
- *Return: returns the length of a string
- */
-int _strlen(char *str)
-{
-int length = 0;
-while (*str)
-{
-str++;
-length++;
-}
-return (length);
-}
-/**
- *_strncat - concatinates two strings
- *@dest:destination pointer
- *@src:pointer to a string
- *@n:amount tot be concatenated
- *Return: concatinated string
+ * *_strncat - function that concatenates two strings.
+ * @dest: input is array to be modified
+ * @src: input is array source
+ * @n: input
+ * Return: char
  */
 char *_strncat(char *dest, char *src, int n)
 {
-char *cat = dest + _strlen(dest);
-int length;
-if (n > _strlen(src) + _strlen(dest))
-length =  _strlen(dest) + _strlen(src);
-else
-length = _strlen(dest) + n;
-while (*src && n > 0)
+int strlen, dest_len, i, m;
+while (src[strlen] != 0)
 {
-*cat += *src;
-src++;
-cat++;
-n--;
+strlen++;
 }
-if (n > 0)
-*cat += '\0';
-cat -= (length);
-*dest = *cat;
-return (cat);
+while (dest[dest_len] != 0)
+{
+dest_len++;
+}
+m = n;
+for (i = 0 ; i < m && src[i] != '\0'; i++)
+{
+dest[dest_len + i] = src[i];
+}
+dest[dest_len + i] = '\0';
+return (dest);
 }
